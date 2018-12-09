@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Layout for Pre-call (outgoing video, connecting video) -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable name="view" type="com.banyan.mvvmplay.ChatItems.ChatItemNewsView"/>
+        <variable name="vm" type="com.banyan.mvvmplay.ChatItems.VmChatItemNews"/>
+        <variable name="events" type="com.banyan.mvvmplay.Chat.IChatItemViewEvents"/>
+        <import alias="vc" type="com.banyan.mvvmplay.Utils.ChatValueConverters"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#f0f0f0"
+        android:onClick="@{() -> events.onViewClick()}">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@{vm.title}"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:text="@{vm.description}"/>
+        <ImageView
+            android:id="@+id/imageView"
+            android:scaleType="centerCrop"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:bindNetworkSrc="@{vm.imageSrc}"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:text="@{vc.getIsoDateInFormat(vm.publishedAt, &quot;E, MMMM d, y&quot;)}"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:padding="8dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/ic_add_shopping_cart_black_24dp"
+                android:onClick="@{() -> view.onIconClick()}"/>
+            <ImageView
+                android:padding="8dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/ic_alarm_add_black_24dp"
+                android:onClick="@{() -> view.onIconClick()}"/>
+            <ImageView
+                android:padding="8dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@mipmap/ic_search_black_24dp"
+                android:onClick="@{() -> view.onIconClick()}"/>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

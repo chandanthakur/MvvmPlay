@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Layout for Pre-call (outgoing video, connecting video) -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable name="vm" type="com.banyan.mvvmplay.ChatItems.VmChatItemMessage"/>
+        <variable name="events" type="com.banyan.mvvmplay.Chat.IChatItemViewEvents"/>
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#f6f6f6"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:text="@{vm.title}"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="8dp"
+            android:text="@{vm.description}"/>
+    </LinearLayout>
+</layout>
