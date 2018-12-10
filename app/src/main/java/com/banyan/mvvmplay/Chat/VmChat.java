@@ -176,10 +176,6 @@ public final class VmChat {
             ii++;
         }
 
-        // Pending, crash fix required here, was expecting this to work
-        // We need to first notify to adapter and then trim
-        // Solution is to raise event to view layer and then view layer will first
-        // notify the the removal to adapter and then modify the VmList
         chatItems.removeRange(0, nItemsToTrim);
         Log.i("VmChat", String.format("trimTop:triggered, endCount:%d", chatItems.size()));
     }
