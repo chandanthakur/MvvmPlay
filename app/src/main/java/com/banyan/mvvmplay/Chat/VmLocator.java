@@ -8,13 +8,12 @@ import java.util.HashMap;
 /**
  * This class provides a central app-wide repository of all view-models.
  * All VMs should be initialized through this class.
- * TODO: chthakur - support vm cleanup on sign-out/sign-in
  */
 public class VmLocator {
 
     private final static Object viewModelsLock = new Object();
     private static ViewModels viewModels = new ViewModels();
-    private static HashMap<String, VmChatItemMessage> chatItemMap = new HashMap<>();
+    private static HashMap<String, VmChat> vmChatMap = new HashMap<>();
 
     private static class ViewModels {
         private final Object callLogViewModelLock = new Object();
@@ -30,13 +29,12 @@ public class VmLocator {
         }
     }
 
-    public static VmChat getVmChat() {
-        ViewModels viewModelsCopy = getViewModels();
-        synchronized (viewModelsCopy.callLogViewModelLock) {
-            if (viewModelsCopy.callLogViewModel == null) {
-                viewModelsCopy.callLogViewModel = new VmChat();
-            }
-            return viewModelsCopy.callLogViewModel;
+    // Should move to id based logic
+    public static VmChat getVmChat(String chatId) {
+        if(!vmChatMap.containsKey(chatId)) {
+            vmChatMap.put(chatId, new VmChat(chatId));
         }
+
+        return vmChatMap.get(chatId);
     }
 }

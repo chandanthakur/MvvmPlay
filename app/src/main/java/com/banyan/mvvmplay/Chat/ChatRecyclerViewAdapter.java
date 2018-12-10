@@ -10,27 +10,24 @@ import android.view.ViewGroup;
 
 import com.banyan.mvvmplay.R;
 
-import java.lang.ref.WeakReference;
-import java.util.List;
 import java.util.Map;
 
 
 /**
- * Adapter to hook call logs data with recycler view
- * All the data is attached to view using Android Binding, Avoid adding any specific logic to this class
+ * Adapter for Recycler view
  */
 public class ChatRecyclerViewAdapter
         extends RecyclerView.Adapter<ChatRecyclerViewAdapter.ViewHolder> {
 
     private ObservableList<IVmChatItem> items;
     Map<Integer, Integer> itemTypeToLayoutIdMap;
-    private final WeakReferenceOnListChangedCallback onListChangedCallback;
+    private final ObservableToRecyclerListBinding onListChangedCallback;
     private Context context;
 
     ChatRecyclerViewAdapter(Context ctx, ObservableList<IVmChatItem> data, Map<Integer, Integer> map){
         context = ctx;
         items = data;
-        this.onListChangedCallback = new WeakReferenceOnListChangedCallback<>(this);
+        this.onListChangedCallback = new ObservableToRecyclerListBinding<>(this);
         itemTypeToLayoutIdMap = map;
         items.addOnListChangedCallback(this.onListChangedCallback);
     }
@@ -87,67 +84,6 @@ public class ChatRecyclerViewAdapter
         public void bindData(IVmChatItem item) {
             itemContainer = itemBinding.getRoot().findViewById(R.id.itemView);
             itemContainer.setVm(item);
-        }
-    }
-
-    private static class WeakReferenceOnListChangedCallback<T> extends ObservableList.OnListChangedCallback
-    {
-
-        private final WeakReference<ChatRecyclerViewAdapter> adapterReference;
-
-        public WeakReferenceOnListChangedCallback(ChatRecyclerViewAdapter bindingRecyclerViewAdapter)
-        {
-            this.adapterReference = new WeakReference<>(bindingRecyclerViewAdapter);
-        }
-
-        @Override
-        public void onChanged(ObservableList sender)
-        {
-            RecyclerView.Adapter adapter = adapterReference.get();
-            if (adapter != null)
-            {
-                adapter.notifyDataSetChanged();
-            }
-        }
-
-        @Override
-        public void onItemRangeChanged(ObservableList sender, int positionStart, int itemCount)
-        {
-            RecyclerView.Adapter adapter = adapterReference.get();
-            if (adapter != null)
-            {
-                adapter.notifyItemRangeChanged(positionStart, itemCount);
-            }
-        }
-
-        @Override
-        public void onItemRangeInserted(ObservableList sender, int positionStart, int itemCount)
-        {
-            RecyclerView.Adapter adapter = adapterReference.get();
-            if (adapter != null)
-            {
-                adapter.notifyItemRangeInserted(positionStart, itemCount);
-            }
-        }
-
-        @Override
-        public void onItemRangeMoved(ObservableList sender, int fromPosition, int toPosition, int itemCount)
-        {
-            RecyclerView.Adapter adapter = adapterReference.get();
-            if (adapter != null)
-            {
-                adapter.notifyItemMoved(fromPosition, toPosition);
-            }
-        }
-
-        @Override
-        public void onItemRangeRemoved(ObservableList sender, int positionStart, int itemCount)
-        {
-            RecyclerView.Adapter adapter = adapterReference.get();
-            if (adapter != null)
-            {
-                adapter.notifyItemRangeRemoved(positionStart, itemCount);
-            }
         }
     }
 }

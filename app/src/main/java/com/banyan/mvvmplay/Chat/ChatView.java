@@ -28,7 +28,7 @@ public class ChatView extends FrameLayout {
     private final VmChat vmChat;
     private ChatRecyclerViewAdapter listAdapter;
 
-    private EndlessScrollListener mScrollListener;
+    private RecyclerViewScrollListener mScrollListener;
 
     public ChatView(Context context) {
         this(context, null, 0);
@@ -41,7 +41,7 @@ public class ChatView extends FrameLayout {
     public ChatView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         this.context = context;
-        vmChat = VmLocator.getVmChat();
+        vmChat = VmLocator.getVmChat("id"); //TODO: How to flow this id is important as well? chthakur, pending
         initializeView();
     }
 
@@ -50,13 +50,12 @@ public class ChatView extends FrameLayout {
         ChatViewBinding binding = ChatViewBinding.inflate(inflater, this, true);
         binding.setVm(vmChat);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(context);
-        //mLayoutManager.setReverseLayout(true);
         mLayoutManager.setStackFromEnd(true);
         binding.listView.setLayoutManager(mLayoutManager);
         listAdapter = new ChatRecyclerViewAdapter(context, vmChat.getChatItems(), itemTypeToLayoutIdMap);
         binding.listView.setAdapter(listAdapter);
 
-        mScrollListener = new EndlessScrollListener(mLayoutManager) {
+        mScrollListener = new RecyclerViewScrollListener(mLayoutManager) {
             @Override
             public void onLoadMore(int firstVisibleItem, int lastVisibleItem) {
                 vmChat.onActiveItemsChange(firstVisibleItem, lastVisibleItem);

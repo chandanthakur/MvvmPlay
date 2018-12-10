@@ -1,7 +1,7 @@
 package com.banyan.mvvmplay.Chat;
 
 /**
- * ViewModel for CallLog
+ * Type of chat items
  */
 public enum ChatItemType {
 

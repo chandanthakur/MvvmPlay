@@ -3,35 +3,26 @@ package com.banyan.mvvmplay.Chat;
 import android.databinding.ObservableArrayList;
 import android.databinding.ObservableField;
 import android.databinding.ObservableList;
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.banyan.mvvmplay.ChatItems.VmChatItemMessage;
 import com.banyan.mvvmplay.ChatItems.VmChatItemNews;
-import com.banyan.mvvmplay.Service.INewsService;
-import com.banyan.mvvmplay.Service.NewsArticleSchema;
+import com.banyan.mvvmplay.Repository.NewsArticleSchema;
 import com.banyan.mvvmplay.Service.NewsResponse;
 import com.banyan.mvvmplay.Service.NewsService;
 
-import org.reactivestreams.Subscription;
-
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 
 import io.reactivex.Observer;
-import io.reactivex.Scheduler;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 /**
- * ViewModel for CallLog
+ * ViewModel for Chat
  */
 public final class VmChat {
 
@@ -53,7 +44,7 @@ public final class VmChat {
 
     String[] countryList = {"us", "in", "uk", "ca", "us", "in", "uk" };
 
-    VmChat(){
+    VmChat(String chatId){
         fetchNews(countryList[loadIndex%countryList.length]); loadIndex++;
     }
 

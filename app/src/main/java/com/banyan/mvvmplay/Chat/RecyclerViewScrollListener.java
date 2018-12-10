@@ -3,8 +3,8 @@ package com.banyan.mvvmplay.Chat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-public abstract class EndlessScrollListener extends RecyclerView.OnScrollListener {
-    public static String TAG = EndlessScrollListener.class.getSimpleName();
+public abstract class RecyclerViewScrollListener extends RecyclerView.OnScrollListener {
+    public static String TAG = RecyclerViewScrollListener.class.getSimpleName();
 
     private static final int visibleThreshold = 10;
 
@@ -15,7 +15,7 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
     private int mFirstVisibleItem = -1;
     private int mLastVisibleItem = -1;
 
-    EndlessScrollListener(LinearLayoutManager linearLayoutManager) {
+    RecyclerViewScrollListener(LinearLayoutManager linearLayoutManager) {
         this.mLinearLayoutManager = linearLayoutManager;
     }
 
