@@ -27,10 +27,13 @@ public abstract class RecyclerViewScrollListener extends RecyclerView.OnScrollLi
         if(firstVisibleItem != mFirstVisibleItem || lastVisibleITem != mLastVisibleItem) {
             mFirstVisibleItem = firstVisibleItem;
             mLastVisibleItem = lastVisibleITem;
-            onLoadMore(mFirstVisibleItem, mLastVisibleItem);
+            triggerLoadMore(mFirstVisibleItem, mLastVisibleItem);
         }
     }
 
+    private void triggerLoadMore(int firstVisibleItemIndex, int lastVisibleItemIndex) {
+        onLoadMore(firstVisibleItemIndex, lastVisibleItemIndex);
+    }
 
     public abstract void onLoadMore(int firstVisibleItemIndex, int lastVisibleItemIndex);
 }

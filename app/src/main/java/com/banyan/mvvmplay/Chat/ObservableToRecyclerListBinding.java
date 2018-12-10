@@ -1,6 +1,8 @@
 package com.banyan.mvvmplay.Chat;
 import android.databinding.ObservableList;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+
 import java.lang.ref.WeakReference;
 
 /**
@@ -9,7 +11,7 @@ import java.lang.ref.WeakReference;
  */
 class ObservableToRecyclerListBinding<T> extends ObservableList.OnListChangedCallback
 {
-
+    private static final String TAG = ObservableToRecyclerListBinding.class.getSimpleName();
     private final WeakReference<RecyclerView.Adapter> adapterReference;
 
     public ObservableToRecyclerListBinding(RecyclerView.Adapter bindingRecyclerViewAdapter)
@@ -40,6 +42,7 @@ class ObservableToRecyclerListBinding<T> extends ObservableList.OnListChangedCal
     @Override
     public void onItemRangeInserted(ObservableList sender, int positionStart, int itemCount)
     {
+        Log.i(TAG, String.format("onItemRangeInserted, start %d, count %d", positionStart, itemCount));
         RecyclerView.Adapter adapter = adapterReference.get();
         if (adapter != null)
         {
@@ -60,6 +63,7 @@ class ObservableToRecyclerListBinding<T> extends ObservableList.OnListChangedCal
     @Override
     public void onItemRangeRemoved(ObservableList sender, int positionStart, int itemCount)
     {
+        Log.i(TAG, String.format("onItemRangeRemoved, start %d, count %d", positionStart, itemCount));
         RecyclerView.Adapter adapter = adapterReference.get();
         if (adapter != null)
         {
