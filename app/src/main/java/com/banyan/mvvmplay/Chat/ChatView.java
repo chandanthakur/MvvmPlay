@@ -8,6 +8,7 @@ import android.widget.FrameLayout;
 
 import com.banyan.mvvmplay.R;
 import com.banyan.mvvmplay.databinding.ChatViewBinding;
+import com.banyan.mvvmplay.framework.RecyclerViewScrollListener;
 
 import java.util.HashMap;
 import java.util.Map;

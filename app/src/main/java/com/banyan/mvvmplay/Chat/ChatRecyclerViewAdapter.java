@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import com.banyan.mvvmplay.R;
+import com.banyan.mvvmplay.framework.ObservableToRecyclerListBinding;
 
 import java.util.Map;
 

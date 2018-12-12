@@ -1,4 +1,4 @@
-package com.banyan.mvvmplay.Chat;
+package com.banyan.mvvmplay.framework;
 import android.databinding.ListChangeRegistry;
 import android.databinding.ObservableList;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.Collection;
  * Reflect changes in the observable list to recycler view adapter list
  * @param <T>
  */
-class ObservableItemsList<T> extends ArrayList<T> implements ObservableList<T>
+public class ObservableItemsList<T> extends ArrayList<T> implements ObservableList<T>
 {
     private transient ListChangeRegistry mListeners = new ListChangeRegistry();
 

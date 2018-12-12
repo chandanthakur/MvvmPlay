@@ -1,4 +1,4 @@
-package com.banyan.mvvmplay.Chat;
+package com.banyan.mvvmplay.framework;
 import android.databinding.ObservableList;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -9,9 +9,10 @@ import java.lang.ref.WeakReference;
  * Reflect changes in the observable list to recycler view adapter list
  * @param <T>
  */
-class ObservableToRecyclerListBinding<T> extends ObservableList.OnListChangedCallback
+public class ObservableToRecyclerListBinding<T> extends ObservableList.OnListChangedCallback
 {
     private static final String TAG = ObservableToRecyclerListBinding.class.getSimpleName();
+
     private final WeakReference<RecyclerView.Adapter> adapterReference;
 
     public ObservableToRecyclerListBinding(RecyclerView.Adapter bindingRecyclerViewAdapter)

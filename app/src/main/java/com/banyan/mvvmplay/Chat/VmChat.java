@@ -7,6 +7,7 @@ import android.util.Pair;
 
 import com.banyan.mvvmplay.ChatItems.VmChatItemMessage;
 import com.banyan.mvvmplay.ChatItems.VmChatItemNews;
+import com.banyan.mvvmplay.framework.ObservableItemsList;
 import com.banyan.newsservice.Repository.NewsArticleSchema;
 import com.banyan.newsservice.Service.NewsResponse;
 import com.banyan.newsservice.Service.NewsService;
@@ -170,8 +171,6 @@ public final class VmChat {
         chatItems.removeRange(0, nItemsToTrim);
         Log.i("VmChat", String.format("trimTop:triggered, endCount:%d", chatItems.size()));
     }
-
-
 
     public void release() {
         compositeDisposable.dispose();

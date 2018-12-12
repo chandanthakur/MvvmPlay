@@ -1,21 +1,14 @@
-package com.banyan.mvvmplay.Chat;
+package com.banyan.mvvmplay.framework;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 public abstract class RecyclerViewScrollListener extends RecyclerView.OnScrollListener {
-    public static String TAG = RecyclerViewScrollListener.class.getSimpleName();
-
-    private static final int visibleThreshold = 10;
-
-    private int current_page = 1;
-
     private LinearLayoutManager mLinearLayoutManager;
-
     private int mFirstVisibleItem = -1;
     private int mLastVisibleItem = -1;
 
-    RecyclerViewScrollListener(LinearLayoutManager linearLayoutManager) {
+    public RecyclerViewScrollListener(LinearLayoutManager linearLayoutManager) {
         this.mLinearLayoutManager = linearLayoutManager;
     }
 
