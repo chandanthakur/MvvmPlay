@@ -5,7 +5,7 @@ import android.databinding.ObservableField;
 import com.banyan.mvvmplay.Chat.ChatItemSchema;
 import com.banyan.mvvmplay.Chat.ChatItemType;
 import com.banyan.mvvmplay.Chat.IVmChatItem;
-import com.banyan.mvvmplay.Repository.NewsArticleSchema;
+import com.banyan.newsservice.Repository.NewsArticleSchema;
 
 /**
  * ViewModel for CallLog

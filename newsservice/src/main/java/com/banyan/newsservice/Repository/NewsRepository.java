@@ -1,4 +1,4 @@
-package com.banyan.mvvmplay.Repository;
+package com.banyan.newsservice.Repository;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;

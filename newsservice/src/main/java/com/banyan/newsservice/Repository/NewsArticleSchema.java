@@ -1,4 +1,4 @@
-package com.banyan.mvvmplay.Repository;
+package com.banyan.newsservice.Repository;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;

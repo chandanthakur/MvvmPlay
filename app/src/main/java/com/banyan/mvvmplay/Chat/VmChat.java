@@ -1,7 +1,5 @@
 package com.banyan.mvvmplay.Chat;
 
-import android.databinding.ObservableArrayList;
-import android.databinding.ObservableBoolean;
 import android.databinding.ObservableField;
 import android.databinding.ObservableList;
 import android.util.Log;
@@ -9,24 +7,17 @@ import android.util.Pair;
 
 import com.banyan.mvvmplay.ChatItems.VmChatItemMessage;
 import com.banyan.mvvmplay.ChatItems.VmChatItemNews;
-import com.banyan.mvvmplay.Repository.NewsArticleSchema;
-import com.banyan.mvvmplay.Service.NewsResponse;
-import com.banyan.mvvmplay.Service.NewsService;
+import com.banyan.newsservice.Repository.NewsArticleSchema;
+import com.banyan.newsservice.Service.NewsResponse;
+import com.banyan.newsservice.Service.NewsService;
 
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Observable;
-import java.util.concurrent.Callable;
 
-import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 /**

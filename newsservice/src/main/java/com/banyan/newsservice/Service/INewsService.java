@@ -1,4 +1,4 @@
-package com.banyan.mvvmplay.Service;
+package com.banyan.newsservice.Service;
 
 
 import retrofit2.http.GET;

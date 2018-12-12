@@ -1,4 +1,4 @@
-package com.banyan.mvvmplay.Repository;
+package com.banyan.newsservice.Repository;
 
 import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
