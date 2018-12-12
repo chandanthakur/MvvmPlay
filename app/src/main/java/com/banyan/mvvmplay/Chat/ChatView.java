@@ -1,12 +1,8 @@
 package com.banyan.mvvmplay.Chat;
 
 import android.content.Context;
-import android.databinding.Observable;
-import android.databinding.ObservableField;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
@@ -17,8 +13,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import io.reactivex.ObservableSource;
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -27,7 +21,7 @@ import io.reactivex.functions.Consumer;
 
 public class ChatView extends FrameLayout {
 
-    private static final String LOG_PREFIX = "CallView:";
+    private static final String LOG_PREFIX = "ChatView:";
 
     private static final Map<Integer, Integer> itemTypeToLayoutIdMap = new HashMap<Integer, Integer>(){
         {
@@ -100,35 +94,21 @@ public class ChatView extends FrameLayout {
     }
 
     // Ensure we relinquish the synchronous call within scroll listener and then call this method
-    // Are there going to be some delay? Possible but this should be safe.
     // TODO: chthakur: Consider revisiting if there is better API to know the items in view
     private void triggerLoadMore(final int firstVisibleItem, final int lastVisibleItem) {
-        io.reactivex.Observable.fromCallable(new Callable<Boolean>() {
+        Disposable d = io.reactivex.Observable.fromCallable(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
                 vmChat.onActiveItemsChange(firstVisibleItem, lastVisibleItem);
                 return true;
             }
-        }).subscribeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Boolean>() {
+        }).subscribeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<Boolean>() {
             @Override
-            public void onSubscribe(Disposable d) {
-                compositeDisposable.add(d);
-            }
-
-            @Override
-            public void onNext(Boolean aBoolean) {
+            public void accept(Boolean aBoolean) throws Exception {
                 vmChat.onActiveItemsChange(firstVisibleItem, lastVisibleItem);
             }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.e("ChatView", "onError" , e);
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
         });
+
+        compositeDisposable.add(d);
     }
 }
